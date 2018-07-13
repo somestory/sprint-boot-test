@@ -8,7 +8,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // auto created ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto created ID
     private Long id;
 
     @Column(length=100, nullable=false) // varchar(100) not null
@@ -73,7 +73,7 @@ public class User {
     }
 
     @PrePersist // Auto created date when it's created
-    public void prePersis() {
+    public void prePersist() {
         regist_date = new Date();
     }
 

@@ -8,17 +8,17 @@ import java.util.Date;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 100, nullable = false)
-    private String name;
+    private String title;
 
     @Column(length = 100)
     private String author;
 
     @Column
-    private Date createDate;
+    private Date regist_date;
 
 
     public Long getId() {
@@ -29,12 +29,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String name) {
+        this.title = name;
     }
 
     public String getAuthor() {
@@ -45,21 +45,26 @@ public class Book {
         this.author = author;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getRegist_date() {
+        return regist_date;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setRegist_date(Date regist_date) {
+        this.regist_date = regist_date;
+    }
+
+    @PrePersist // Auto created date when it's created
+    public void prePersist() {
+        regist_date = new Date();
     }
 
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", createDate=" + createDate +
+                ", regist_date=" + regist_date +
                 '}';
     }
 
